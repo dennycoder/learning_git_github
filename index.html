@@ -1,12 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spokesmith – Bicycle workshop and frame builders</title>
+  <meta name="description" content="Repairs, tune-ups and custom steel frames, made by hand in a small workshop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="functions.js" defer></script>
 </head>
 <body>
-    <h1>Hello My name is MOhd Danish and I can do changes i this repo
-    </h1>
+  <header class="site-header">
+    <a class="logo" href="#top">Spokesmith</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="#services">Services</a>
+      <a href="#builds">Custom builds</a>
+      <a href="#book" class="nav-cta">Book a slot</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Bikes that run true, fixed by hand.</h1>
+        <p>Spokesmith is a three-person workshop. We repair, tune and build steel bicycles, and we tell you honestly what is worth fixing.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#book">Book a repair</a>
+          <a class="btn btn-ghost" href="#builds">See our frames</a>
+        </div>
+      </div>
+      <svg class="wheel" id="wheel" viewBox="-100 -100 200 200" role="img" aria-label="Bicycle wheel that turns as you scroll">
+        <circle r="94" class="tyre"/>
+        <circle r="84" class="rim"/>
+        <g id="spokes"></g>
+        <circle r="10" class="hub"/>
+        <circle r="3" class="hub-core"/>
+      </svg>
+    </section>
+
+    <section class="services" id="services">
+      <div class="section-head">
+        <h2>What we do</h2>
+        <div class="tabs" role="tablist" aria-label="Service type">
+          <button role="tab" class="tab active" data-filter="all" aria-selected="true">All</button>
+          <button role="tab" class="tab" data-filter="repair" aria-selected="false">Repairs</button>
+          <button role="tab" class="tab" data-filter="build" aria-selected="false">Builds</button>
+          <button role="tab" class="tab" data-filter="fit" aria-selected="false">Fitting</button>
+        </div>
+      </div>
+      <ul class="service-list">
+        <li data-type="repair"><div><h3>Safety check</h3><p>Brakes, headset, wheels and drivetrain checked and adjusted.</p></div><span class="price">₹600</span></li>
+        <li data-type="repair"><div><h3>Full tune-up</h3><p>Gears indexed, wheels trued, bearings cleaned, cables replaced.</p></div><span class="price">₹2,200</span></li>
+        <li data-type="repair"><div><h3>Wheel rebuild</h3><p>New spokes and rim, tensioned and stress-relieved by hand.</p></div><span class="price">₹3,800</span></li>
+        <li data-type="fit"><div><h3>Comfort fit</h3><p>An hour of measuring and adjusting so rides stop hurting your back.</p></div><span class="price">₹1,800</span></li>
+        <li data-type="build"><div><h3>Custom steel frame</h3><p>Designed around your body and your roads. Eight to ten week wait.</p></div><span class="price">from ₹85,000</span></li>
+        <li data-type="build"><div><h3>Frame refinish</h3><p>Stripped, repaired and repainted in the colour you choose.</p></div><span class="price">₹12,000</span></li>
+      </ul>
+    </section>
+
+    <section class="builds" id="builds">
+      <h2>Frames from the bench</h2>
+      <div class="build-grid">
+        <article class="build b1">
+          <h3>The Commuter</h3>
+          <p>Mudguard mounts, a rack, and a frame that shrugs off potholes.</p>
+          <dl><dt>Tubing</dt><dd>Chromoly 4130</dd><dt>Weight</dt><dd>1.9 kg frame</dd><dt>Tyres up to</dt><dd>42 mm</dd></dl>
+        </article>
+        <article class="build b2">
+          <h3>The Ghats Climber</h3>
+          <p>Light, stiff and happy on long gradients.</p>
+          <dl><dt>Tubing</dt><dd>Reynolds 631</dd><dt>Weight</dt><dd>1.5 kg frame</dd><dt>Tyres up to</dt><dd>32 mm</dd></dl>
+        </article>
+        <article class="build b3">
+          <h3>The Gravel Road</h3>
+          <p>Relaxed geometry for dust, laterite and all-day rides.</p>
+          <dl><dt>Tubing</dt><dd>Chromoly 4130</dd><dt>Weight</dt><dd>1.8 kg frame</dd><dt>Tyres up to</dt><dd>50 mm</dd></dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="book" id="book">
+      <div class="book-copy">
+        <h2>Book a workshop slot</h2>
+        <p>Tell us what is wrong and when you can drop the bike off. We reply within a day with a quote.</p>
+        <p class="hours">Tue to Sat, 9 am to 6 pm</p>
+      </div>
+      <form id="booking" novalidate>
+        <label>Your name<input type="text" name="name" autocomplete="name"><span class="error" aria-live="polite"></span></label>
+        <label>Email<input type="email" name="email" autocomplete="email"><span class="error" aria-live="polite"></span></label>
+        <label>What does the bike need?
+          <select name="service">
+            <option value="">Choose a service</option>
+            <option>Safety check</option><option>Full tune-up</option><option>Wheel rebuild</option>
+            <option>Comfort fit</option><option>Custom steel frame</option><option>Frame refinish</option>
+          </select><span class="error" aria-live="polite"></span>
+        </label>
+        <button class="btn" type="submit">Send booking request</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Spokesmith Cycles, Pune</span>
+    <a href="#top">Back to top</a>
+  </footer>
 </body>
 </html>
