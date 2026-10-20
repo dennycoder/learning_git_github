@@ -120,4 +120,19 @@ document.addEventListener("DOMContentLoaded", () => {
     status.textContent = `Design added to your request: ${text}.`;
     document.getElementById("book").scrollIntoView({ behavior: "smooth" });
   });
+
+  // Navbar: shadow after scrolling, highlight the section in view
+  const header = document.querySelector(".site-header");
+  const navLinks = [...nav.querySelectorAll("a")];
+  const onScroll = () => header.classList.toggle("scrolled", scrollY > 10);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  sections.forEach(s => s.id && spy.observe(s));
 });
