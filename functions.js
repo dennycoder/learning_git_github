@@ -86,4 +86,38 @@ document.addEventListener("DOMContentLoaded", () => {
       status.textContent = "";
     }
   });
+
+  // Ride progress bar
+  const ride = document.querySelector(".ride");
+  const setRide = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    ride.style.setProperty("--p", (max > 0 ? scrollY / max * 100 : 0) + "%");
+  };
+  addEventListener("scroll", setRide, { passive: true });
+  setRide();
+
+  // Frame designer
+  const conf = document.getElementById("configurator");
+  const bike = document.querySelector(".bike");
+  const fmt = n => "₹" + n.toLocaleString("en-IN");
+  const updateBike = () => {
+    const model = conf.querySelector('[name="model"]:checked');
+    const colour = conf.querySelector('[name="colour"]:checked');
+    const price = +model.dataset.price + +colour.dataset.extra;
+    bike.style.setProperty("--frame", colour.value);
+    ["tyreR", "tyreF"].forEach(id => document.getElementById(id).style.strokeWidth = model.dataset.tyre);
+    document.getElementById("summary").textContent =
+      `${model.nextElementSibling.textContent} in ${colour.dataset.name}`;
+    document.getElementById("total").textContent = fmt(price);
+    return `${model.nextElementSibling.textContent}, ${colour.dataset.name}, about ${fmt(price)}`;
+  };
+  conf.addEventListener("change", updateBike);
+  updateBike();
+
+  document.getElementById("use-design").addEventListener("click", () => {
+    const text = updateBike();
+    form.elements.service.value = "Custom steel frame";
+    status.textContent = `Design added to your request: ${text}.`;
+    document.getElementById("book").scrollIntoView({ behavior: "smooth" });
+  });
 });

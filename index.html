@@ -12,12 +12,14 @@
   <script src="functions.js" defer></script>
 </head>
 <body>
+  <div class="ride" aria-hidden="true"><span class="ride-fill"></span><span class="ride-dot"></span></div>
   <header class="site-header">
     <a class="logo" href="#top">Spokesmith</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav" class="nav">
       <a href="#services">Services</a>
       <a href="#builds">Custom builds</a>
+      <a href="#design">Design yours</a>
       <a href="#book" class="nav-cta">Book a slot</a>
     </nav>
   </header>
@@ -80,6 +82,51 @@
           <dl><dt>Tubing</dt><dd>Chromoly 4130</dd><dt>Weight</dt><dd>1.8 kg frame</dd><dt>Tyres up to</dt><dd>50 mm</dd></dl>
         </article>
       </div>
+    </section>
+
+    <section class="design" id="design">
+      <div class="design-stage">
+        <h2>Design your frame</h2>
+        <p>Pick a model and a colour. The bike and the price update as you go.</p>
+        <svg class="bike" viewBox="0 0 400 220" role="img" aria-label="Preview of your custom bicycle">
+          <circle id="tyreR" cx="90" cy="150" r="58" class="b-tyre"/>
+          <circle id="tyreF" cx="310" cy="150" r="58" class="b-tyre"/>
+          <g class="b-spokes"><circle cx="90" cy="150" r="46"/><circle cx="310" cy="150" r="46"/></g>
+          <g class="b-frame">
+            <line x1="190" y1="150" x2="168" y2="72"/>
+            <line x1="168" y1="72" x2="282" y2="72"/>
+            <line x1="190" y1="150" x2="288" y2="96"/>
+            <line x1="282" y1="72" x2="288" y2="96"/>
+            <line x1="90" y1="150" x2="190" y2="150"/>
+            <line x1="90" y1="150" x2="168" y2="72"/>
+            <line x1="288" y1="96" x2="310" y2="150"/>
+          </g>
+          <g class="b-parts">
+            <line x1="168" y1="72" x2="160" y2="52"/><rect x="144" y="46" width="34" height="8" rx="4"/>
+            <line x1="282" y1="72" x2="278" y2="48"/><line x1="278" y1="48" x2="300" y2="48"/>
+            <circle cx="190" cy="150" r="9"/>
+          </g>
+        </svg>
+      </div>
+      <form class="configurator" id="configurator">
+        <fieldset>
+          <legend>Model</legend>
+          <label class="chip"><input type="radio" name="model" value="commuter" data-price="85000" data-tyre="6" checked><span>Commuter</span></label>
+          <label class="chip"><input type="radio" name="model" value="climber" data-price="98000" data-tyre="4"><span>Ghats Climber</span></label>
+          <label class="chip"><input type="radio" name="model" value="gravel" data-price="92000" data-tyre="8"><span>Gravel Road</span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Colour</legend>
+          <div class="swatches">
+            <label><input type="radio" name="colour" value="#FFC700" data-extra="0" data-name="Signal yellow" checked><span style="--c:#FFC700"></span></label>
+            <label><input type="radio" name="colour" value="#2F6B4F" data-extra="0" data-name="Forest green"><span style="--c:#2F6B4F"></span></label>
+            <label><input type="radio" name="colour" value="#D1432F" data-extra="0" data-name="Coral red"><span style="--c:#D1432F"></span></label>
+            <label><input type="radio" name="colour" value="#9FB4C7" data-extra="4000" data-name="Metallic silver"><span style="--c:#9FB4C7"></span></label>
+          </div>
+        </fieldset>
+        <p class="estimate"><span id="summary">Commuter in Signal yellow</span><strong id="total">₹85,000</strong></p>
+        <button type="button" class="btn" id="use-design">Ask for this build</button>
+      </form>
     </section>
 
     <section class="book" id="book">
